@@ -1,4 +1,4 @@
-# TicketFlow – Open-Source Ticketing & Helpdesk System  
+# OpenDesk – Open-Source Ticketing & Helpdesk System  
 **Modern, lightweight, full-stack ticketing system built with Spring Boot 3 + Angular 18 + PostgreSQL**  
 Single Docker image · Ready for staging & production · 100% free & open-source (MIT)
 
@@ -39,8 +39,8 @@ Single Docker image · Ready for staging & production · 100% free & open-source
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourname/ticketflow.git
-cd ticketflow
+git clone https://github.com/Caesar-final/opendesk.git
+cd opendesk
 
 # 2. Copy example env and adjust if needed
 cp .env.example .env
@@ -85,16 +85,16 @@ npm start
 
 ```bash
 # Build the optimized production image (~180 MB)
-docker build -t ticketflow:latest .
+docker build -t opendesk:latest .
 
 # Run with persistent data
 docker run -d \
-  --name ticketflow \
+  --name opendesk \
   -p 8080:8080 \
-  -v ticketflow-data:/data \
-  -v ticketflow-attachments:/attachments \
+  -v opendesk-data:/data \
+  -v opendesk-attachments:/attachments \
   --restart unless-stopped \
-  ticketflow:latest
+  opendesk:latest
 ```
 
 All static Angular files are served directly by Spring Boot in production mode – no separate Nginx needed.
@@ -146,10 +146,10 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 
 ## Support the Project
 
-If you like TicketFlow, give us a star!  
+If you like OpenDesk, give us a star!  
 Found a bug or have a feature request? Open an issue – we respond fast.
 
 ---
-**TicketFlow – Because every team deserves a clean, fast, and free ticketing system.**  
+**OpenDesk – Because every team deserves a clean, fast, and free ticketing system.**  
 
 Made with ❤️ by open-source enthusiasts
