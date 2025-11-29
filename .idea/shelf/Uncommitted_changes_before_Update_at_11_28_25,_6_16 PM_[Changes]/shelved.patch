@@ -1,0 +1,35 @@
+Index: src/main/resources/application.properties
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+deleted file mode 100644
+--- a/src/main/resources/application.properties	(revision 2d3ed8046856ddae0116ec16b58e6637d4ce6130)
++++ /dev/null	(revision 2d3ed8046856ddae0116ec16b58e6637d4ce6130)
+@@ -1,1 +0,0 @@
+-spring.application.name=opendesk
+Index: backend/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/backend/src/main/resources/application.properties b/backend/src/main/resources/application.properties
+new file mode 100644
+--- /dev/null	(date 1764007539687)
++++ b/backend/src/main/resources/application.properties	(date 1764007539687)
+@@ -0,0 +1,16 @@
++spring.application.name=opendesk
++
++# Database connection
++spring.datasource.url=jdbc:postgresql://localhost:5432/OpenDeskDB
++spring.datasource.username=postgres
++spring.datasource.password=postgres
++
++# JPA / Hibernate
++spring.jpa.hibernate.ddl-auto=update
++spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
++spring.jpa.show-sql=false
++spring.jpa.properties.hibernate.format_sql=true
++
++# Optional: nicer logging in dev
++logging.level.org.hibernate.SQL=DEBUG
++logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+\ No newline at end of file

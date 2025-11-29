@@ -1,0 +1,132 @@
+Index: src/main/resources/application.properties
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+deleted file mode 100644
+--- a/src/main/resources/application.properties	(revision 1b07df0a55683e0814e9390db53dfdb6e539ba87)
++++ /dev/null	(revision 1b07df0a55683e0814e9390db53dfdb6e539ba87)
+@@ -1,1 +0,0 @@
+-spring.application.name=opendesk
+Index: backend/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/backend/src/main/resources/application.properties b/backend/src/main/resources/application.properties
+new file mode 100644
+--- /dev/null	(date 1764364615838)
++++ b/backend/src/main/resources/application.properties	(date 1764364615838)
+@@ -0,0 +1,16 @@
++spring.application.name=opendesk
++
++# Database connection
++spring.datasource.url=jdbc:postgresql://localhost:5432/OpenDeskDB
++spring.datasource.username=postgres
++spring.datasource.password=postgres
++
++# JPA / Hibernate
++spring.jpa.hibernate.ddl-auto=update
++spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
++spring.jpa.show-sql=false
++spring.jpa.properties.hibernate.format_sql=true
++
++# Optional: nicer logging in dev
++logging.level.org.hibernate.SQL=DEBUG
++logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"8d4a6a82-f2fb-497d-8ad5-b7bbc4c2e27b\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/backend/src/main/resources/application.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gitattributes\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/.gitattributes\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.gitignore\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/.gitignore\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/mvnw\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/mvnw\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/mvnw.cmd\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/mvnw.cmd\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/pom.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/open/opendesk/OpendeskApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/open/opendesk/OpendeskApplication.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/application.properties\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/com/open/opendesk/OpendeskApplicationTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/test/java/com/open/opendesk/OpendeskApplicationTests.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Heartless-Caesar&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/Heartless-Caesar/OpenDesk.git&quot;,\n    &quot;accountId&quot;: &quot;dd043a38-86fd-471f-b308-35c4031ce738&quot;\n  }\n}</component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"35vpUyrUrRZSGbDTbEbtyNQj7dK\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"Application.OpendeskApplication.executor\": \"Run\",\n    \"Docker.Docker Image.executor\": \"Run\",\n    \"Docker.Postgres.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"git-widget-placeholder\": \"master\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"project.structure.last.edited\": \"Project\",\n    \"project.structure.proportion\": \"0.0\",\n    \"project.structure.side.proportion\": \"0.0\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/client\" />\n      <recent name=\"$PROJECT_DIR$/backend\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.OpendeskApplication\">\n    <configuration name=\"OpendeskApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.open.opendesk.OpendeskApplication\" />\n      <module name=\"opendesk\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.open.opendesk.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Docker Image\" type=\"docker-deploy\" factoryName=\"docker-image\" temporary=\"true\" server-name=\"Docker\">\n      <deployment type=\"docker-image\">\n        <settings>\n          <option name=\"imageTag\" value=\"postgres:latest\" />\n          <option name=\"containerName\" value=\"postgres-local\" />\n          <option name=\"envVars\">\n            <list>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_DB\" />\n                <option name=\"value\" value=\"OpenDeskDB\" />\n              </DockerEnvVarImpl>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_PASSWORD\" />\n                <option name=\"value\" value=\"postgres\" />\n              </DockerEnvVarImpl>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_USER\" />\n                <option name=\"value\" value=\"postgres\" />\n              </DockerEnvVarImpl>\n            </list>\n          </option>\n          <option name=\"portBindings\">\n            <list>\n              <DockerPortBindingImpl>\n                <option name=\"containerPort\" value=\"5432\" />\n                <option name=\"hostPort\" value=\"5432\" />\n              </DockerPortBindingImpl>\n            </list>\n          </option>\n          <option name=\"volumeBindings\">\n            <list>\n              <DockerVolumeBindingImpl>\n                <option name=\"hostPath\" value=\"~/postgres-data:/var/lib/postgresql/data\" />\n              </DockerVolumeBindingImpl>\n            </list>\n          </option>\n        </settings>\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Postgres\" type=\"docker-deploy\" factoryName=\"docker-image\" temporary=\"true\" server-name=\"Docker\">\n      <deployment type=\"docker-image\">\n        <settings>\n          <option name=\"imageTag\" value=\"postgres:latest\" />\n          <option name=\"containerName\" value=\"Postgres_local\" />\n          <option name=\"envVars\">\n            <list>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_USER\" />\n                <option name=\"value\" value=\"postgres\" />\n              </DockerEnvVarImpl>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_PASSWORD\" />\n                <option name=\"value\" value=\"postgres\" />\n              </DockerEnvVarImpl>\n              <DockerEnvVarImpl>\n                <option name=\"name\" value=\"POSTGRES_DB\" />\n                <option name=\"value\" value=\"OpenDeskDB\" />\n              </DockerEnvVarImpl>\n            </list>\n          </option>\n          <option name=\"portBindings\">\n            <list>\n              <DockerPortBindingImpl>\n                <option name=\"containerPort\" value=\"5432\" />\n                <option name=\"hostPort\" value=\"5432\" />\n              </DockerPortBindingImpl>\n            </list>\n          </option>\n          <option name=\"volumeBindings\">\n            <list>\n              <DockerVolumeBindingImpl>\n                <option name=\"containerPath\" value=\"/var/lib/postgresql/data \" />\n                <option name=\"hostPath\" value=\"$USER_HOME$/Docker volumes/\" />\n              </DockerVolumeBindingImpl>\n            </list>\n          </option>\n        </settings>\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <configuration default=\"true\" type=\"docker-deploy\" factoryName=\"docker-image\" temporary=\"true\">\n      <deployment type=\"docker-image\">\n        <settings />\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.OpendeskApplication\" />\n        <item itemvalue=\"Docker.Postgres\" />\n        <item itemvalue=\"Docker.Docker Image\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"8d4a6a82-f2fb-497d-8ad5-b7bbc4c2e27b\" name=\"Changes\" comment=\"\" />\n      <created>1764000418783</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1764000418783</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1b07df0a55683e0814e9390db53dfdb6e539ba87)
++++ b/.idea/workspace.xml	(date 1764365949387)
+@@ -4,17 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8d4a6a82-f2fb-497d-8ad5-b7bbc4c2e27b" name="Changes" comment="">
++    <list default="true" id="8d4a6a82-f2fb-497d-8ad5-b7bbc4c2e27b" name="Changes" comment="Task: Created and added client folder, moved backend to said folder">
+       <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/open/opendesk/OpendeskApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/open/opendesk/OpendeskApplication.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/com/open/opendesk/OpendeskApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/open/opendesk/OpendeskApplicationTests.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -23,6 +16,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+   &quot;lastFilter&quot;: {
+@@ -51,22 +45,22 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "Application.OpendeskApplication.executor": "Run",
+-    "Docker.Docker Image.executor": "Run",
+-    "Docker.Postgres.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Application.OpendeskApplication.executor&quot;: &quot;Run&quot;,
++    &quot;Docker.Docker Image.executor&quot;: &quot;Run&quot;,
++    &quot;Docker.Postgres.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/client" />
+@@ -190,6 +184,19 @@
+       <option name="presentableId" value="Default" />
+       <updated>1764000418783</updated>
+     </task>
++    <task id="LOCAL-00001" summary="Task: Created and added client folder, moved backend to said folder">
++      <option name="closed" value="true" />
++      <created>1764364596814</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1764364596814</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Task: Created and added client folder, moved backend to said folder" />
++    <option name="LAST_COMMIT_MESSAGE" value="Task: Created and added client folder, moved backend to said folder" />
++  </component>
+ </project>
+\ No newline at end of file
