@@ -8,12 +8,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
@@ -22,19 +24,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 @RequiredArgsConstructor
+@Component
 public class JwtValidationFilter extends OncePerRequestFilter {
 
     private final Environment environment;
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    @Value("${jwt.secret.default.value}")
+    private String jwtSecretDefaultValue;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = request.getHeader("Authorization");
         if(null != jwt){
             try {
-                Environment environment = getEnvironment();
-
-                String secret = environment.getProperty(Objects.requireNonNull(environment.getProperty("jwt_secret")),
-                        Objects.requireNonNull(environment.getProperty("jwt_secret_default_value")));
+                String secret = jwtSecret != null ? jwtSecret : jwtSecretDefaultValue;
 
                 SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
 
@@ -52,6 +58,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                 throw new BadCredentialsException("Invalid token received");
             }
         }
+        filterChain.doFilter(request,response);
     }
 
     @Override

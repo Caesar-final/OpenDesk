@@ -6,26 +6,36 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Component
 public class JwtGeneratorFilter  extends OncePerRequestFilter {
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    @Value("${jwt.secret.default.value}")
+    private String jwtSecretDefaultValue;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(null != authentication){
-            Environment environment = getEnvironment();
-            String secret = environment.getProperty("","");
+            String secret = jwtSecret != null ? jwtSecret : jwtSecretDefaultValue;
             SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
             String jwt = Jwts.builder()
                     .issuer("OpenDesk")
@@ -40,6 +50,8 @@ public class JwtGeneratorFilter  extends OncePerRequestFilter {
 
             response.setHeader("Authorization", jwt);
         }
+
+        filterChain.doFilter(request,response);
     }
 
     @Override

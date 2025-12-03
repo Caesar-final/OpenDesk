@@ -5,6 +5,7 @@ import com.open.opendesk.DTO.LoginResponseDTO;
 import com.open.opendesk.DTO.UserDTO;
 import com.open.opendesk.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserController {
 
+    @Value("${jwt.header}")
+    private String jwtHeader;
+
     private final UserService userService;
 
-    private final Environment environment;
-
-    @PostMapping("/create")
+    @PostMapping("/register")
     public UserDTO createUser(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
     }
@@ -36,7 +38,7 @@ public class UserController {
 
         String jwt = userService.loginUser(loginRequestDTO);
 
-        return  ResponseEntity.status(HttpStatus.OK).header(Objects.requireNonNull(environment.getProperty("jwt_header")),jwt)
+        return  ResponseEntity.status(HttpStatus.OK).header(jwtHeader,jwt)
                 .body(new LoginResponseDTO(HttpStatus.OK.getReasonPhrase(),jwt));
     }
 }

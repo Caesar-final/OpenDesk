@@ -9,6 +9,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,13 +22,18 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    @Value("${jwt.secret.default.value}")
+    private String jwtSecretDefaultValue;
 
     private final UserRepo userRepo;
 
@@ -73,8 +79,7 @@ public class UserService {
 
         if(null != authenticationResponse && authenticationResponse.isAuthenticated()){
             if(null != environment){
-                String secret = environment.getProperty(Objects.requireNonNull(environment.getProperty("jwt_secret")),
-                        Objects.requireNonNull(environment.getProperty("jwt_secret_default_value")));
+                String secret = jwtSecret != null ? jwtSecret : jwtSecretDefaultValue;
                 SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
                 jwt = Jwts.builder()
                         .issuer("OpenDesk")

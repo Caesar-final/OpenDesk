@@ -38,7 +38,8 @@ public class ProjectSecurityConfig  {
     private final Environment environment;
 
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http){
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http,JwtValidationFilter jwtValidationFilter,
+                                                   JwtGeneratorFilter jwtGeneratorFilter){
 
         http
                 .cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource(){
@@ -57,8 +58,12 @@ public class ProjectSecurityConfig  {
         }))
                 .sessionManagement(smc -> smc.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
-                .addFilterAfter(new JwtGeneratorFilter(), BasicAuthenticationFilter.class)
-                .addFilterBefore(new JwtValidationFilter(environment), BasicAuthenticationFilter.class)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/user/login", "/user/register").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .addFilterAfter(jwtGeneratorFilter, BasicAuthenticationFilter.class)
+                .addFilterBefore(jwtValidationFilter, BasicAuthenticationFilter.class)
                 .userDetailsService(customUserDetailsService);
 
         return http.build();
