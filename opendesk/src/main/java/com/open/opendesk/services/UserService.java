@@ -3,7 +3,9 @@ package com.open.opendesk.services;
 import com.open.opendesk.DTO.LoginRequestDTO;
 import com.open.opendesk.DTO.LoginResponseDTO;
 import com.open.opendesk.DTO.UserDTO;
+import com.open.opendesk.models.Role;
 import com.open.opendesk.models.User;
+import com.open.opendesk.repositories.RoleRepo;
 import com.open.opendesk.repositories.UserRepo;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -23,6 +25,7 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +39,8 @@ public class UserService {
     private String jwtSecretDefaultValue;
 
     private final UserRepo userRepo;
+
+    private final RoleRepo roleRepo;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -51,9 +56,9 @@ public class UserService {
         userDTO.setPassword(hashPwd);
         userDTO.setCreatedAt(new Date(System.currentTimeMillis()));
 
-        User userData = modelMapper.map(userDTO, User.class);
+        User mappedUser = modelMapper.map(userDTO, User.class);
 
-        User createdUser = userRepo.save(userData);
+        User createdUser = userRepo.save(mappedUser);
 
         return modelMapper.map(createdUser, UserDTO.class);
     }

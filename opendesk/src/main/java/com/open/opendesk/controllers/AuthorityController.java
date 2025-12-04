@@ -20,4 +20,6 @@ public class AuthorityController {
     public List<Authority> getAllAuthorities(){
         return authorityService.getAllAuthorities();
     }
+
+
 }

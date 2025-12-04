@@ -3,6 +3,7 @@ package com.open.opendesk.DTO;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,6 +27,8 @@ public class UserDTO {
     private boolean credentialsNonExpired;
 
     private boolean accountNonLocked;
+
+    private Set<Long> roleIds;
 
     private Date createdAt;
 

@@ -16,4 +16,5 @@ public class AuthorityService {
     public List<Authority> getAllAuthorities(){
         return authorityRepo.findAll();
     }
+
 }
