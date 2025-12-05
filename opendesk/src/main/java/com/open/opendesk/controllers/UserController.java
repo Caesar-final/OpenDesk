@@ -1,17 +1,12 @@
 package com.open.opendesk.controllers;
 
-import com.open.opendesk.DTO.LoginRequestDTO;
-import com.open.opendesk.DTO.LoginResponseDTO;
-import com.open.opendesk.DTO.UserDTO;
+import com.open.opendesk.DTO.*;
 import com.open.opendesk.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
@@ -40,5 +35,17 @@ public class UserController {
 
         return  ResponseEntity.status(HttpStatus.OK).header(jwtHeader,jwt)
                 .body(new LoginResponseDTO(HttpStatus.OK.getReasonPhrase(),jwt));
+    }
+
+    @PatchMapping("/role/add")
+    public ResponseEntity<UserDTO> updateUserRoles(@RequestBody updateUserRolesDTO updateUserRolesDTO){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(userService.updateUserRoles(updateUserRolesDTO));
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(userService.updateUser(userDTO));
     }
 }

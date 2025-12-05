@@ -31,13 +31,13 @@ public class ModelMapperConfig {
         TypeMap<UserDTO, User> userDTOUserTypeMap = modelMapper.createTypeMap(UserDTO.class, User.class);
 
         userDTOUserTypeMap.addMappings(mapper -> {
+            mapper.map(UserDTO::getId,User::setId);
             mapper.map(UserDTO::getUsername, User::setUsername);
             mapper.map(UserDTO::getEmail, User::setEmail);
             mapper.map(UserDTO::isEnabled, User::setEnabled);
             mapper.map(UserDTO::isAccountNonExpired, User::setAccountNonExpired);
             mapper.map(UserDTO::isCredentialsNonExpired, User::setCredentialsNonExpired);
             mapper.map(UserDTO::isAccountNonLocked, User::setAccountNonLocked);
-            mapper.map(UserDTO::getPassword, User::setPassword);
         });
 
         userDTOUserTypeMap.addMappings(mapper ->

@@ -1,8 +1,6 @@
 package com.open.opendesk.services;
 
-import com.open.opendesk.DTO.LoginRequestDTO;
-import com.open.opendesk.DTO.LoginResponseDTO;
-import com.open.opendesk.DTO.UserDTO;
+import com.open.opendesk.DTO.*;
 import com.open.opendesk.models.Role;
 import com.open.opendesk.models.User;
 import com.open.opendesk.repositories.RoleRepo;
@@ -55,6 +53,10 @@ public class UserService {
         String hashPwd = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(hashPwd);
         userDTO.setCreatedAt(new Date(System.currentTimeMillis()));
+        userDTO.setEnabled(true);
+        userDTO.setAccountNonLocked(true);
+        userDTO.setAccountNonExpired(true);
+        userDTO.setCredentialsNonExpired(true);
 
         User mappedUser = modelMapper.map(userDTO, User.class);
 
@@ -100,5 +102,45 @@ public class UserService {
             }
         }
         return jwt;
+    }
+
+    public UserDTO updateUserRoles(updateUserRolesDTO updateUserRolesDTO){
+        Set<Role> rolesToAdd = updateUserRolesDTO.getRoleIds()
+                .stream()
+                .map(roleRepo::findById)
+                .flatMap(Optional::stream)
+                .collect(Collectors.toSet());
+
+        Optional<User> user = userRepo.findById(updateUserRolesDTO.getUserId());
+
+        if(user.isEmpty()){
+            throw new UsernameNotFoundException("User with id " + updateUserRolesDTO.getUserId() + " not found.");
+        }
+
+        user.get().setRoles(rolesToAdd);
+
+        userRepo.save(user.get());
+
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    public UserDTO updateUser(UserDTO userDTO){
+        Optional<User> user = userRepo.findById(userDTO.getId());
+
+        if(user.isEmpty()){
+            throw new UsernameNotFoundException("User " + userDTO.getUsername() + " not found");
+        }
+
+        userDTO.setUpdatedAt(new Date());
+
+        User updatedUser = modelMapper.map(userDTO, User.class);
+
+        if (userDTO.getPassword() != null && !userDTO.getPassword().trim().isEmpty()) {
+            updatedUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        }
+
+        userRepo.save(updatedUser);
+
+        return modelMapper.map(updatedUser, UserDTO.class);
     }
 }
